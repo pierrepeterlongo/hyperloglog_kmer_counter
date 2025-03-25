@@ -36,6 +36,6 @@ hyperloglog_kmer_counter -i tests/fof.txt -k 31
 Estimated unique k-mers in tests/a.fa: 970
 Estimated unique k-mers in tests/b.fq: 970
 Estimated unique k-mers in tests/b.fq.gz: 970
-Estimated unique k-mers in all files from tests/fof.txt: 1941
+Estimated unique k-mers in all files from tests/fof.txt: 1940
 ```
 
