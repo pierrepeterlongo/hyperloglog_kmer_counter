@@ -32,9 +32,9 @@ Options:
 ### Example:
 ```
 hyperloglog_kmer_counter -i tests/fof.txt -k 31
-Estimated unique k-mers in tests/a.fa: 251
-Estimated unique k-mers in tests/b.fq: 254
-Estimated unique k-mers in tests/b.fq.gz: 254
-Estimated unique k-mers in all files from tests/fof.txt: 257
+Estimated unique k-mers in tests/a.fa: 971
+Estimated unique k-mers in tests/b.fq: 970
+Estimated unique k-mers in tests/b.fq.gz: 970
+Estimated unique k-mers in all files from tests/fof.txt: 1941
 ```
 
