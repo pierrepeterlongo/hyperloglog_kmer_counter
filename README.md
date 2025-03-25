@@ -15,8 +15,9 @@ The executable name is `hyperloglog_kmer_counter`.
 
 ## Warning
 - This tool does not filter input data, it does not count kmers.
-- This tool considers **all** kmers, also those including non ACGTacgt chatacters
+- This tool considers **all** kmers, also those including non-ACGTacgt characters
 - Size of kmers is at most 32.
+- No parallelization
 
 ## Usage
 ```
