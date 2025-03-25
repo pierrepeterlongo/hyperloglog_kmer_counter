@@ -1,22 +1,11 @@
 use std::fs::File;
 use std::io::{BufReader, Read};
-use flate2::read::GzDecoder;
 use needletail::parse_fastx_reader;
-use std::collections::hash_map::RandomState;
 use hyperloglogplus::{HyperLogLog, HyperLogLogPlus};
 use clap::Parser;
 use std::io::{self, BufRead};
 use std::path::Path;
-
-use std::hash::{Hash, Hasher};
-use std::collections::hash_map::DefaultHasher;
-
-// Function to hash a k-mer
-fn hash_kmer(kmer: &[u8]) -> u64 {
-    let mut hasher = DefaultHasher::new();
-    kmer.hash(&mut hasher);
-    hasher.finish()
-}
+use ahash::RandomState;
 
 // Process a single file
 fn process_file(filename: &str, 
@@ -24,11 +13,10 @@ fn process_file(filename: &str,
     local_hll: &mut HyperLogLogPlus<u64, RandomState>,
     k: usize) -> std::io::Result<()> {
 
-    let reader: Box<dyn Read + Send> = if filename.ends_with(".gz") {
-        Box::new(GzDecoder::new(File::open(filename)?))
-    } else {
-        Box::new(File::open(filename)?)
-    };
+
+    
+    let hash_builder = RandomState::with_seed(42);
+    let reader: Box<dyn Read + Send> = Box::new(File::open(filename)?);
     
     let mut reader = BufReader::new(reader);
     let mut fastx_reader = parse_fastx_reader(&mut reader).map_err(|e| std::io::Error::new(std::io::ErrorKind::Other, e))?;
@@ -36,8 +24,9 @@ fn process_file(filename: &str,
         let seqrec = record.map_err(|e| std::io::Error::new(std::io::ErrorKind::Other, e))?;
         let seq = seqrec.seq();
         for kmer in seq.windows(k) {
-            global_hll.insert(&hash_kmer(kmer));
-            local_hll.insert(&hash_kmer(kmer));
+            let hash_value = hash_builder.hash_one(kmer);
+            global_hll.insert(&hash_value);
+            local_hll.insert(&hash_value);
         }
     }
     Ok(())

@@ -1,6 +1,6 @@
 [package]
 name = "hyperloglog_kmer_counter"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 
 description = "Estimate unique k-mers from genomic sequences using HyperLogLog++"
@@ -12,3 +12,4 @@ flate2 = "1.0"
 needletail = "0.6"
 hyperloglogplus = "0.4"
 clap = { version = "4.5", features = ["derive"] }
+ahash = "0.8"
