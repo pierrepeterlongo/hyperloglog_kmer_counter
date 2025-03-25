@@ -1,0 +1,3 @@
+tests/a.fa
+tests/b.fq
+tests/b.fq.gz
