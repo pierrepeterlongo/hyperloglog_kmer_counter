@@ -15,8 +15,9 @@ The executable name is `hyperloglog_kmer_counter`.
 
 ## Warning
 - This tool does not filter input data, it does not count kmers.
-- This tool considers **all** kmers, also those including non ACGTacgt chatacters
+- This tool considers **all** kmers, also those including non-ACGTacgt characters
 - Size of kmers is at most 32.
+- No parallelization
 
 ## Usage
 ```
@@ -35,6 +36,6 @@ hyperloglog_kmer_counter -i tests/fof.txt -k 31
 Estimated unique k-mers in tests/a.fa: 970
 Estimated unique k-mers in tests/b.fq: 970
 Estimated unique k-mers in tests/b.fq.gz: 970
-Estimated unique k-mers in all files from tests/fof.txt: 1941
+Estimated unique k-mers in all files from tests/fof.txt: 1940
 ```
 
