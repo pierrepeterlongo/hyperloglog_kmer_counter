@@ -1,4 +1,4 @@
-# Hyperloglog kmer counter
+# Hyperloglog distinct kmer counter
 A simple tool for estimating the number of distinct kmers in a set of fasta fastq files gzipped or not. 
 
 ## License 
